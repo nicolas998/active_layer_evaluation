@@ -1,10 +1,7 @@
 {
-  "Notebook": {
-    "Export to modules": "/export",
-    "Convert to html": "/export2html",
-    "Show doc": "/showdoc",
-    "Test functions": "/test",
-    "Core functions": "/core",
-    "Command line functions": "/cli"
+  "aclayer": {
+    "Overview": "/",
+    "Active layer and tiles model performance evaluation": "/core",
+    "Active Layer Evaluation": "/Active_layer_evaluation"
   }
 }
