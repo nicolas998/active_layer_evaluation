@@ -1,0 +1,226 @@
+foreign_id,river,town
+06610000,Missouri River,Omaha
+05387440,Upper Iowa River,Bluffton
+05387490,Dry Run Creek,Decorah
+05389000,Yellow River,Ion
+05389400,Bloody Run Creek,Marquette
+05411600,Turkey River,Spillville
+05412400,Volga River,Littleport
+05418400,North Fork Maquoketa River,Fulton
+05420680,Wapsipinicon River,Tripoli
+05421760,Wapsipinicon River,Oxford Mills
+05422470,Crow Creek,Bettendorf
+05422600,Duck Creek,Davenport
+05448400,West Main Drainage Ditch 1 & 2,Britt
+05451210,South Fork Iowa River,New Providence
+05451700,Timber Creek,Marshalltown
+05451900,Richland Creek,Haven
+05452000,Salt Creek,Elberon
+05452200,Walnut Creek,Hartwick
+05453000,Big Bear Creek,Ladora
+05453520,Iowa River,Coralville
+05454000,Rapid Creek,Iowa City
+05454090,Muddy Creek,Coralville
+05454220,Clear Creek,Oxford
+05454300,Clear Creek,Coralville
+05455010,South Branch Ralston Creek,Iowa City
+05455100,Old Mans Creek,Iowa City
+05457000,Austin,0
+05457505,Cedar River,Osage
+05458000,Little Cedar River,Ionia
+05460400,Shell Rock River,Rockford
+05463500,Black Hawk Creek,Hudson
+05464220,Wolf Creek,Dysart
+05464942,Hoover Creek,West Branch
+05471200,Indian Creek,Mingo
+05473065,Skunk River,Merrimac
+05473400,Cedar Creek,Oakland Mills
+05473450,Big Creek,Mount Pleasant
+05475350,Windom,0.00020935717
+05476000,Jackson,0.042189874
+05476735,Pilot Creek,Rolfe
+05480080,Lizard Creek,Fort Dodge
+05480820,Boone River,Goldfield
+05481650,Des Moines River,Saylorville
+05482300,North Raccoon River,Sac City
+05483450,Middle Raccoon River,Bayard
+05483600,Middle Raccoon River,Panora
+05484600,Raccoon River,West Des Moines
+05484800,Walnut Creek,Des Moines
+05485605,Fourmile Creek,Ankeny
+05485640,Fourmile Creek,Des Moines
+05487520,Des Moines River,Swan
+05487980,White Breast Creek,Dallas
+05488110,Des Moines River,Pella
+05488200,English Creek,Knoxville
+06602400,Monona-Harrison Ditch,Turin
+06604440,Little Sioux River,Spencer
+06808820,West Nishnabotna River,Riverton
+06903900,Chariton River,Rathbun
+05452500,Iowa River,Belle Plaine
+05387500,Upper Iowa River,Decorah
+05388250,Upper Iowa River,Dorchester
+05411850,Turkey River,Eldorado
+05412020,Turkey River abv French Hollow Cr,Elkader
+05412500,Turkey River,Garber
+05416900,Maquoketa River,Manchester
+05418500,Maquoketa River,Maquoketa
+05421000,Wapsipinicon River,Independence
+05421740,Wapsipinicon River,Anamosa
+05422000,Wapsipinicon River,De Witt
+05449500,Iowa River,Rowan
+05451500,Iowa River,Marshalltown
+06478000,James River,Mitchell
+05453100,Iowa River,Marengo
+05454500,Iowa River,Iowa City
+05455500,English River,Kalona
+05455700,Iowa River,Lone Tree
+05457700,Cedar River,Charles City
+05458300,Cedar River,Waverly
+05458500,Cedar River,Janesville
+05458900,West Fork Cedar River,Finchford
+05459500,Winnebago River,Mason City
+05462000,Shell Rock River,Shell Rock
+05463000,Beaver Creek,New Hartford
+05463050,Cedar River,Cedar Falls
+05464000,Cedar River,Waterloo
+05464315,Cedar River,Vinton
+05464420,Cedar River,Palo
+05464500,Cedar River,Cedar Rapids
+05465000,Cedar River,Conesville
+05418720,Maquoketa River,Green Island
+05465500,Iowa River,Wapello
+05465700,Iowa River,Oakville
+05470000,South Skunk River,Ames
+05470500,Squaw Creek,Ames
+05471000,South Skunk River blw Squaw Cr,Ames
+05471050,South Skunk River,Colfax
+05471500,South Skunk River,Oskaloosa
+05472500,North Skunk River,Sigourney
+05474000,Skunk River,Augusta
+05476500,Des Moines River,Estherville
+05476590,Des Moines River,Emmetsburg
+05476750,Des Moines River,Humboldt
+05478265,East Fork Des Moines River,Algona
+05479000,East Fork Des Moines River,Dakota City
+05480500,Des Moines River,Fort Dodge
+05481000,Boone River,Webster City
+05481300,Des Moines River,Stratford
+05481950,Beaver Creek,Grimes
+05482000,Des Moines River,Des Moines
+05482430,North Raccoon River,Lanesboro
+05482500,North Raccoon River,Jefferson
+05484000,South Raccoon River,Redfield
+05484500,Raccoon River,Van Meter
+05484650,Raccoon River,Des Moines
+05484900,Raccoon River,Des Moines
+05485500,Des Moines River blw Raccoon R.,Des Moines
+05486000,North River,Norwalk
+05486490,Middle River,Indianola
+05487470,South River,Ackworth
+05488500,Des Moines River,Tracy
+05489000,Cedar Creek,Bussey
+05489500,Des Moines River,Ottumwa
+05490500,Des Moines River,Keosauqua
+05494300,Fox River,Bloomfield
+06483290,Rock River below Tom Creek,Rock Rapids
+06483500,Rock River,Rock Valley
+06599900,Perry Creek,Milnerville
+06599950,Perry Creek,Hinton
+06600000,Perry Creek,Sioux City
+06600100,Floyd River,Alton
+06600500,Floyd River,James
+06602020,West Fork Ditch,Hornick
+06605000,Ocheyedan River,Spencer
+06605850,Little Sioux River,Linn Grove
+06606600,Little Sioux River,Correctionville
+06607200,Maple River,Mapleton
+06607500,Little Sioux River,Turin
+06608500,Soldier River,Pisgah
+06609500,Boyer River,Logan
+06807410,West Nishnabotna River,Hancock
+06808500,West Nishnabotna River,Randolph
+05420850,Little Wapsipinicon River,Oran
+06809210,East Nishnabotna River,Atlantic
+06809500,East Nishnabotna River,Red Oak
+06810000,Nishnabotna River above,Hamburg
+06817000,Nodaway River,Clarinda
+06819185,East Fork 102 River,Bedford
+06898000,Thompson River,Davis City
+06903400,Chariton River,Chariton
+06903700,South Fork Chariton River,Promise City
+06904010,Chariton River,Moulton
+06485500,Big Sioux River,Akron
+06609100,Missouri,Blair
+05420500,Mississippi,Camanche
+06601200,Missouri,Decatur
+05420400,Mississippi,Fulton
+05389500,Mississippi,McGregor
+06807000,Missouri,Nebraska City
+06805600,Missouri,Plattsmouth
+06486000,Missouri River,Sioux City
+06485950,Big Sioux River,Sioux City
+05451955,Stein Creek,Clutier
+06482020,Big Sioux River,Sioux Falls
+05411500,Mississippi River,Clayton
+05420460,Beaver Slough,Clinton
+05421890,Silver Creek,Welton
+05451770,Iowa River,Tama
+05469860,Mud Lake Drainage Ditch 71,Jewell
+05482315,Black Hawk Lake,Lake View
+06604000,Spirit Lake,Orleans
+06604200,West Okoboji Lake,Milford
+06810070,Missouri River,Brownville
+06813500,Missouri River,Rulo
+05460000,Clear Lake,Clear Lake
+05387320,Upper Iowa River,Lime Springs
+06903880,Chariton River (Rathbun Res.),Moravia
+05483470,Lake Panorama,Panora
+05387405,Upper Iowa River,Kendallville
+05388310,Waterloo Creek,Dorchester
+05414400,Middle Fk Little Maquoketa River,Rickardsville
+05455230,Deep River,Deep River
+05459490,Spring Creek,Mason City
+05464780,Cedar River,Cedar Bluff
+06811875,Snake Creek,Yorktown
+06609560,Willow Creek,Soldier
+05411900,Otter Creek,Elgin
+0546494150,Unnamed Trb West Branch Wapsinonoc Creek,West Branch
+0546494140,West Branch Wapsinonoc Creek,West Branch
+0546494170,West Branch Wapsinonoc Creek,West Branch
+06479449,Lake Kampeska,Watertown
+06479215,Big Sioux River,Summit
+06479438,Big Sioux River N,Watertown
+06479452,Big Sioux River S,Watertown
+06479500,Big Sioux River SE,Watertown
+06479525,Big Sioux River,Castlewood
+06479770,Big Sioux River,Estelline
+06481480,Skunk Creek,Dell Rapids
+06481500,Skunk Creek,Sioux Falls
+06482000,Big Sioux River,Sioux Falls
+06481000,Big Sioux River,Baltic
+06482610,Split Rock Creek,Brandon
+06485910,Big Sioux River,Jefferson
+06483950,Big Sioux River,Hawarden
+06479010,Vermillion River,Vermillion
+06478513,James River,Yankton
+06478500,James River,Scotland
+05453200,Price Creek,Amana
+05457440,Deer Creek,Carpenter
+05460100,Willow Creek,Mason City
+05464730,Cedar River,Cedar Rapids
+05469990,Keigley Branch,Story City
+05472390,Middle Creek,Lacey
+05480930,White Fox Creek,Clarion
+05481510,Bluff Creek,Pilot Mound
+05483318,Brushy Fork Creek,Templeton
+05483349,Middle Raccoon River Tributary,Carroll
+05489490,Bear Creek,Ottumwa
+06483495,Burr Oak Creek,Perkins
+06600030,Little Floyd River,Sanborn
+06602190,Elliott Creek,Lawton
+06605750,Willow Creek,Cornell
+06810030,Main Ditch No. Six at Levee Rd,Hamburg
+06811760,Tarkio River,Elliott
+06811800,East Tarkio Creek,Stanton
+06816290,West Nodaway River,Massena
