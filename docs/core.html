@@ -36,7 +36,7 @@ description: "API details."
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">plotly</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="kn">import</span> <span class="nn">pylab</span> <span class="k">as</span> <span class="nn">pl</span>
 
 <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#52270C&#39;</span><span class="p">,</span><span class="s1">&#39;#A1623B&#39;</span><span class="p">,</span><span class="s1">&#39;#E7A011&#39;</span><span class="p">,</span><span class="s1">&#39;#F3DE0A&#39;</span><span class="p">]</span>
 
@@ -77,6 +77,97 @@ description: "API details."
         <span class="n">X</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">)</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span>
         <span class="c1">#Y.append(np.percentile(sim[(obs&gt;i) &amp; (obs&lt;=j)], perc))</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">plot_hist2d</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">Met</span><span class="p">,</span> <span class="n">prod1</span><span class="p">,</span> <span class="n">prod2</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;kge&#39;</span><span class="p">,</span><span class="n">x1</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">x2</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="mi">2016</span><span class="p">,</span>
+                <span class="n">cmap</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">vmin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span> <span class="n">cmin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">cmax</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Make a 2d hist plot of a metric using two products from the metrics file.&#39;&#39;&#39;</span>
+    <span class="c1">#Get the intersection</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">Met</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">y</span><span class="p">]</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">B</span><span class="p">[[</span><span class="n">metric</span><span class="p">,</span><span class="s1">&#39;link&#39;</span><span class="p">]][</span><span class="n">B</span><span class="p">[</span><span class="s1">&#39;product&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">prod1</span><span class="p">]</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">B</span><span class="p">[[</span><span class="n">metric</span><span class="p">,</span><span class="s1">&#39;link&#39;</span><span class="p">]][</span><span class="n">B</span><span class="p">[</span><span class="s1">&#39;product&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">prod2</span><span class="p">]</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+    <span class="c1">#Make the plot</span>
+    <span class="n">pl</span><span class="o">.</span><span class="n">hist2d</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="n">metric</span><span class="p">],</span> <span class="n">b</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="n">metric</span><span class="p">],</span> <span class="n">cmap</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">),</span>
+              <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">cmin</span> <span class="o">=</span> <span class="n">cmin</span><span class="p">,</span> <span class="n">cmax</span> <span class="o">=</span> <span class="n">cmax</span><span class="p">,</span> <span class="n">vmin</span> <span class="o">=</span> <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="n">vmax</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">cmap</span><span class="p">:</span>
+        <span class="n">cmap</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">orientation</span> <span class="o">=</span> <span class="s1">&#39;horizontal&#39;</span><span class="p">,</span> <span class="n">pad</span> <span class="o">=</span> <span class="mf">0.15</span><span class="p">)</span>
+        <span class="n">cmap</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="c1">#cmap.set_ticks(t)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">],</span> <span class="p">[</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">lw</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelsize</span> <span class="o">=</span> <span class="mi">21</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">prod1</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">21</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">prod2</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">21</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">prod2</span><span class="o">+</span><span class="s1">&#39; vs &#39;</span><span class="o">+</span><span class="n">prod1</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">23</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ax</span><span class="p">,</span> <span class="n">cmap</span>
+
+<span class="k">def</span> <span class="nf">get_histogram</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">inf</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">sup</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Get an histogram for the given data taking into account </span>
+<span class="sd">    an inferior limit to add there all the values less than it.&#39;&#39;&#39;</span>
+    <span class="n">h</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">inf</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">h</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span>  <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">&lt;</span><span class="n">inf</span><span class="p">]</span><span class="o">.</span><span class="n">size</span>
+    <span class="k">if</span> <span class="n">sup</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span>  <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="o">&gt;</span> <span class="n">sup</span><span class="p">]</span><span class="o">.</span><span class="n">size</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">h</span> <span class="o">/</span> <span class="n">h</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">h</span><span class="p">,</span> <span class="n">b</span>
+
+<span class="k">def</span> <span class="nf">summary_metric</span><span class="p">(</span><span class="n">Met</span><span class="p">,</span> <span class="n">products</span><span class="p">,</span> <span class="n">metric</span><span class="p">,</span> <span class="n">min_max</span> <span class="o">=</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="n">absolute</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Produces a summary of a given metric including only the assigned products</span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        - Met: Metric file DataFrame.</span>
+<span class="sd">        - products: list of the products to be included.</span>
+<span class="sd">        - metric: Name of the metric to evaluate, must be in the Metrics File.</span>
+<span class="sd">        - min_max: is the metric a maximum or a minimum.</span>
+<span class="sd">        - absolute: The value is absolute or not.&#39;&#39;&#39;</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">Met</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;link&#39;</span><span class="p">,</span><span class="s1">&#39;product&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">Mres</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">Met</span><span class="o">.</span><span class="n">link</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+        <span class="n">D</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">products</span><span class="p">:</span>
+            <span class="n">D</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">p</span><span class="p">:</span> <span class="n">G</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">l</span><span class="p">,</span> <span class="n">p</span><span class="p">)][</span><span class="n">metric</span><span class="p">]})</span>
+            <span class="n">Mres</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">l</span><span class="p">:</span> <span class="n">D</span><span class="p">})</span>
+    <span class="n">Mres</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">Mres</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">Mres</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">min_max</span> <span class="o">==</span><span class="s1">&#39;max&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">absolute</span><span class="p">:</span>            
+            <span class="n">_t1</span> <span class="o">=</span> <span class="n">Mres</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">))],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">_t2</span> <span class="o">=</span> <span class="n">Mres</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">idxmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">Mres</span><span class="p">[</span><span class="s1">&#39;max_&#39;</span><span class="o">+</span><span class="n">metric</span><span class="p">]</span> <span class="o">=</span> <span class="n">_t1</span>
+            <span class="n">Mres</span><span class="p">[</span><span class="s1">&#39;best&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_t2</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Mres</span><span class="p">[</span><span class="s1">&#39;best&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Mres</span><span class="o">.</span><span class="n">idxmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">Mres</span><span class="p">[</span><span class="s1">&#39;max_&#39;</span><span class="o">+</span><span class="n">metric</span><span class="p">]</span> <span class="o">=</span> <span class="n">Mres</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">absolute</span><span class="p">:</span>
+            <span class="n">_t1</span> <span class="o">=</span> <span class="n">Mres</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">))],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">_t2</span> <span class="o">=</span> <span class="n">Mres</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">idxmin</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">Mres</span><span class="p">[</span><span class="s1">&#39;min_&#39;</span><span class="o">+</span><span class="n">metric</span><span class="p">]</span> <span class="o">=</span> <span class="n">_t1</span>
+            <span class="n">Mres</span><span class="p">[</span><span class="s1">&#39;best&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_t2</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Mres</span><span class="p">[</span><span class="s1">&#39;best&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Mres</span><span class="o">.</span><span class="n">idxmin</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">Mres</span><span class="p">[</span><span class="s1">&#39;min_&#39;</span><span class="o">+</span><span class="n">metric</span><span class="p">]</span> <span class="o">=</span> <span class="n">Mres</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Mres</span>
+
+<span class="k">def</span> <span class="nf">get_intersec_events</span><span class="p">(</span><span class="n">Emet</span><span class="p">,</span> <span class="n">prod1</span><span class="p">,</span> <span class="n">prod2</span><span class="p">,</span> <span class="n">metric</span><span class="p">,</span> <span class="n">qpeak_cond</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Get the intersection of two products using the event metric table&#39;&#39;&#39;</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">Emet</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">Emet</span><span class="p">[</span><span class="s1">&#39;product&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">prod1</span><span class="p">,</span> <span class="p">[</span><span class="n">metric</span><span class="p">,</span> <span class="s1">&#39;qpeak&#39;</span><span class="p">,</span><span class="s1">&#39;qmax_anual&#39;</span><span class="p">,</span><span class="s1">&#39;link&#39;</span><span class="p">]]</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">Emet</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">Emet</span><span class="p">[</span><span class="s1">&#39;product&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">prod2</span><span class="p">,</span> <span class="p">[</span><span class="n">metric</span><span class="p">,</span> <span class="s1">&#39;qpeak&#39;</span><span class="p">,</span><span class="s1">&#39;qmax_anual&#39;</span><span class="p">,</span><span class="s1">&#39;link&#39;</span><span class="p">]]</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">b</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">qpeak_cond</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">a</span><span class="p">[</span><span class="s1">&#39;qsca&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="s1">&#39;qpeak&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">a</span><span class="p">[</span><span class="s1">&#39;qmax_anual&#39;</span><span class="p">]</span>
+        <span class="n">b</span><span class="p">[</span><span class="s1">&#39;qsca&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="s1">&#39;qpeak&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">b</span><span class="p">[</span><span class="s1">&#39;qmax_anual&#39;</span><span class="p">]</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">a</span><span class="p">[</span><span class="s1">&#39;qsca&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">qpeak_cond</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="n">b</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">b</span><span class="p">[</span><span class="s1">&#39;qsca&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">qpeak_cond</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span>
 </pre></div>
 
     </div>
@@ -97,13 +188,13 @@ description: "API details."
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_intersec" class="doc_header"><code>get_intersec</code><a href="https://github.com/nicolas998/aclayer/tree/master/aclayer/core.py#L10" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_intersec</code>(<strong><code>metric</code></strong>, <strong><code>prod1</code></strong>, <strong><code>prod2</code></strong>, <strong><code>Me</code></strong>, <strong><code>y1</code></strong>=<em><code>'2002'</code></em>, <strong><code>y2</code></strong>=<em><code>'2018'</code></em>)</p>
+<h4 id="get_intersec" class="doc_header"><code>get_intersec</code><a href="https://github.com/nicolas998/aclayer/tree/master/aclayer/core.py#L13" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_intersec</code>(<strong><code>metric</code></strong>, <strong><code>prod1</code></strong>, <strong><code>prod2</code></strong>, <strong><code>Me</code></strong>, <strong><code>y1</code></strong>=<em><code>'2002'</code></em>, <strong><code>y2</code></strong>=<em><code>'2018'</code></em>)</p>
 </blockquote>
 <p>Get the intersection for a given metric between two products of the event metrics data
 Inputs:
     -metric: the nme of the metric to analize.
     -prod1 and prod2: the products from to get the interserctio.
-    -Me: MEtrica table with the products and the metrics.
+    -Me: Metrics table with the products and the metrics.
     -y1 and y2: initial and end years to analize.</p>
 
 </div>
@@ -127,7 +218,7 @@ Inputs:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="percentiles" class="doc_header"><code>percentiles</code><a href="https://github.com/nicolas998/aclayer/tree/master/aclayer/core.py#L27" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>percentiles</code>(<strong><code>obs</code></strong>, <strong><code>sim</code></strong>, <strong><code>steps</code></strong>=<em><code>10</code></em>, <strong><code>bins</code></strong>=<em><code>None</code></em>, <strong><code>perc</code></strong>=<em><code>50</code></em>, <strong><code>percMax</code></strong>=<em><code>99.5</code></em>)</p>
+<h4 id="percentiles" class="doc_header"><code>percentiles</code><a href="https://github.com/nicolas998/aclayer/tree/master/aclayer/core.py#L30" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>percentiles</code>(<strong><code>obs</code></strong>, <strong><code>sim</code></strong>, <strong><code>steps</code></strong>=<em><code>10</code></em>, <strong><code>bins</code></strong>=<em><code>None</code></em>, <strong><code>perc</code></strong>=<em><code>50</code></em>, <strong><code>percMax</code></strong>=<em><code>99.5</code></em>)</p>
 </blockquote>
 <p>Obtains the percentile for the sim value that corresponds to
 an oberved value.
@@ -140,6 +231,114 @@ Parameters:
 Returns:
     -A vector (2,N) where the first row corresponds to the percentiles
     at the observation and the second to the percentiles at the simulation</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="plot_hist2d" class="doc_header"><code>plot_hist2d</code><a href="https://github.com/nicolas998/aclayer/tree/master/aclayer/core.py#L51" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_hist2d</code>(<strong><code>ax</code></strong>, <strong><code>Met</code></strong>, <strong><code>prod1</code></strong>, <strong><code>prod2</code></strong>, <strong><code>bins</code></strong>, <strong><code>metric</code></strong>=<em><code>'kge'</code></em>, <strong><code>x1</code></strong>=<em><code>-1</code></em>, <strong><code>x2</code></strong>=<em><code>1</code></em>, <strong><code>y</code></strong>=<em><code>2016</code></em>, <strong><code>cmap</code></strong>=<em><code>False</code></em>, <strong><code>vmin</code></strong>=<em><code>0</code></em>, <strong><code>vmax</code></strong>=<em><code>10000</code></em>, <strong><code>cmin</code></strong>=<em><code>0</code></em>, <strong><code>cmax</code></strong>=<em><code>10000</code></em>)</p>
+</blockquote>
+<p>Make a 2d hist plot of a metric using two products from the metrics file.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="get_histogram" class="doc_header"><code>get_histogram</code><a href="https://github.com/nicolas998/aclayer/tree/master/aclayer/core.py#L76" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_histogram</code>(<strong><code>data</code></strong>, <strong><code>bins</code></strong>, <strong><code>inf</code></strong>=<em><code>None</code></em>, <strong><code>sup</code></strong>=<em><code>None</code></em>)</p>
+</blockquote>
+<p>Get an histogram for the given data taking into account
+an inferior limit to add there all the values less than it.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="summary_metric" class="doc_header"><code>summary_metric</code><a href="https://github.com/nicolas998/aclayer/tree/master/aclayer/core.py#L87" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>summary_metric</code>(<strong><code>Met</code></strong>, <strong><code>products</code></strong>, <strong><code>metric</code></strong>, <strong><code>min_max</code></strong>=<em><code>'max'</code></em>, <strong><code>absolute</code></strong>=<em><code>False</code></em>)</p>
+</blockquote>
+<p>Produces a summary of a given metric including only the assigned products
+Parameters:</p>
+
+<pre><code>- Met: Metric file DataFrame.
+- products: list of the products to be included.
+- metric: Name of the metric to evaluate, must be in the Metrics File.
+- min_max: is the metric a maximum or a minimum.
+- absolute: The value is absolute or not.</code></pre>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="get_intersec_events" class="doc_header"><code>get_intersec_events</code><a href="https://github.com/nicolas998/aclayer/tree/master/aclayer/core.py#L124" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_intersec_events</code>(<strong><code>Emet</code></strong>, <strong><code>prod1</code></strong>, <strong><code>prod2</code></strong>, <strong><code>metric</code></strong>, <strong><code>qpeak_cond</code></strong>=<em><code>0.2</code></em>)</p>
+</blockquote>
+<p>Get the intersection of two products using the event metric table</p>
 
 </div>
 
